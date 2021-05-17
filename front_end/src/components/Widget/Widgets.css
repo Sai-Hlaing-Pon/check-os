@@ -1,0 +1,15 @@
+.widgets {
+    width: 22%;
+    height: 70vh;
+    margin-top: 15px;
+    margin-right: 70px;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+}
+.rank {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 10px;
+    margin-top: 20px;
+}
