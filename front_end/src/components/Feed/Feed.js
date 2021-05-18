@@ -30,6 +30,7 @@ const useStyles = makeStyles({
 });
 
 const Feed = () => {
+    const [searchTerm, setSearchTerm] = useState('');
 
     const [value, setValue] = React.useState(2);
     const [hover, setHover] = React.useState(-1);
@@ -48,26 +49,39 @@ const Feed = () => {
         });
         setPosts(_posts);
     }
+    
 
     useEffect(() => {
         getPosts();
     }, []);
-
+    
     return (
 
         <div className="feed">
+            <input type="text" 
+            className="header__input"
+            placeholder="Search...." 
+            onChange={(event) => {
+                setSearchTerm(event.target.value);
+            }} />
 
-            {posts.map(post => {
+            {posts.filter((post) => {
+                if (searchTerm == "") {
+                    return post
+                } else if (post.data.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+                      return post  
+                }
+            }).map((post, key) => {
                 return (
-                    <div className="post">
+                    <div className="post" key={key}>
                         <div className="post__top">
                             <div className="post__image">
                                 <img src={post.data.cover} alt="" />
                             </div>
                             <div className="post__topInfo">
-                             <div className="post" key={post.id}>
+                             <div key={post.id}>
                                     
-                                    <Link to={"post/" + post.id}>
+                                    <Link to={"post/" + post.id} style={{ textDecoration: 'none', fontSize: '20px', fontWeight: 'bold'}} >
                                         <p>{post.data.title}</p>
                                     </Link>
                                 </div>   
@@ -87,11 +101,13 @@ const Feed = () => {
                                 </div>
                                 <h4>12 Reviews</h4>
                                 <div className="badge1">
-                                    <h5>{/** {category} **/}</h5></div>
-                                {/** <p>{new Date(timestamp?.toDate()).toUTCString()}</p>*/}
+                                    <h5>{post.data.category}</h5></div>
+                              
                             </div>
 
-                            <div className="badge"><p> Customer Verified</p></div>
+                            <div className="badge">
+                                <p> User Verified</p>
+                                </div>
 
                         </div>
 
@@ -102,12 +118,20 @@ const Feed = () => {
 
                             <div className="post__options">
                                 <div className="post__option">
-                                    <ChatBubbleOutlineIcon />
+                               
+                                    <ChatBubbleOutlineIcon /> 
+                                    <Link to={"/login"} style={{ textDecoration: 'none', color: 'blue'}}> 
                                     <p>Write Review</p>
+                                </Link>
                                 </div>
 
                                 <div className="post__option">
-                                     <p>Learn More</p>
+                                    <div  key={post.id}>
+                                    
+                                        <Link to={"post/" + post.id} style={{ textDecoration: 'none'}}> 
+                                            <p>Read More</p>
+                                        </Link>
+                                </div>   
                                 </div>
                             </div>
                             <div>

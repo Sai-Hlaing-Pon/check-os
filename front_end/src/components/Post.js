@@ -42,6 +42,7 @@ const Post = (props) => {
     const titleRef = useRef(null);
     const contentRef = useRef(null);
     const fileRef = useRef(null);
+    const categoryRef = useRef(null);
 
     const [postid, setPostId] = useState("");
     const [routeRedirect, setRedirect] = useState(false);
@@ -79,6 +80,7 @@ const Post = (props) => {
             id: postid,
             title: titleRef.current.value,
             content: contentRef.current.value,
+            category: contentRef.current.value,
         }
         if (fileRef.current.files.length > 0) {
             post["cover"] = fileRef.current.files[0];
@@ -159,7 +161,7 @@ const Post = (props) => {
                                 <img src={post.cover} alt="" />
                             </div>
                             <div className="post__topInfo">
-                                <h2>{post.title}</h2>
+                                <h2 className="title">{post.title}</h2>
                                 <div className={classes.root}>
                                     <Rating
                                         name="hover-feedback"
@@ -176,7 +178,7 @@ const Post = (props) => {
                                 </div>
                                 <h4>12 Reviews</h4>
                                 <div className="badge1">
-                                    <h5>{/** {category} **/}</h5></div>
+                                    <h5>{post.category}</h5></div>
                                 {/** <p>{new Date(timestamp?.toDate()).toUTCString()}</p>*/}
                             </div>
 
@@ -196,7 +198,7 @@ const Post = (props) => {
                                 </div>
 
                                 <div className="post__option">
-                                     <p>Learn More</p>
+                                     
                                 </div>
                             </div>
                             <div>

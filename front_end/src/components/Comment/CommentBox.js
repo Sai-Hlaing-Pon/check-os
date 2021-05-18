@@ -3,15 +3,14 @@ import { Redirect } from 'react-router'
 import firebase from '../Firebase/config'
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary"
 import InsertEmotionIcon from "@material-ui/icons/InsertEmoticon"
-import './Create.css'
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import './CommentBox.css'
 
-const Create = (props) => {
+
+const CommentBox = (props) => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [cover, setCover] = useState("");
-    const [category, setCategory] = useState("");
+    
 
     const [isBusy, setIsBusy] = useState(false);
     const [routeRedirect, setRedirect] = useState(false);
@@ -24,7 +23,7 @@ const Create = (props) => {
             title,
             content,
             cover: cover[0],
-            category,
+            
         }
 
         await firebase.createPost(post).then(() => {
@@ -52,14 +51,14 @@ const Create = (props) => {
     }
 
 
-    let createForm;
+    let commentForm;
     if (isBusy) {
-        createForm = <div className="processing">
+        commentForm = <div className="processing">
             <p>Request is being processed</p>
             <div className="loader">Loading</div>
         </div>
     } else {
-        createForm = <div className="messageSender">
+        commentForm = <div className="messageSender">
                         <div className="messageSender__top">                      
                             <form onSubmit={addPost}>
                                
@@ -69,41 +68,26 @@ const Create = (props) => {
                                 <br />
                                 <label htmlFor="content">Shop Description: </label>
                                     <textarea name="content" className="messageSender__input" onChange={(e) => setContent(e.target.value)} />
-                                <br />
-                                    <label htmlFor="category">Select Category: </label>
-                                    <Select                                        
-                                        className="messageSender__input1"
-                                        value={category}
-                                        onChange={(e)=> setCategory(e.target.value)}                    
-                                        disableUnderline >
-                                            <MenuItem value="">
-                                                <em>None</em>
-                                            </MenuItem>
-                                            <MenuItem value={'Issues'}>Issues</MenuItem>
-                                            <MenuItem value={"Clothing Store"}>Clothing Store</MenuItem>
-                                            <MenuItem value={'Home Decoration'}>Home Decoration</MenuItem>
-                                            <MenuItem value={'Cosmetic'}>Cosmetic</MenuItem>
-                                            <MenuItem value={'Electronic Devices'}>Electronic Devices</MenuItem>
-                                        </Select>
-                                <br/>
-                                    <label htmlFor="cover">Logo: </label>
+                                <br />                                    
+                               
+                                <label htmlFor="cover">Logo: </label>
                                 <input type="file" onChange={(e) => setCover(e.target.files)} />
                                 <br />
 
-                                <input type="submit" value='create shop' />
+                                <input type="submit" value='Post' />
 
                             </form>
                         </div>
                         <div className="messageSender__bottom">
                 
-                <div className="messageSender__option">
-                    <PhotoLibraryIcon style={{ color: "green" }} />
-                    <h3>Photo/Video</h3>
-                </div>
-                <div className="messageSender__option">
-                    <InsertEmotionIcon style={{ color: "orange" }} />
-                    <h3>Rating</h3>
-                </div>
+                        <div className="messageSender__option">
+                            <PhotoLibraryIcon style={{ color: "green" }} />
+                            <h3>Photo/Video</h3>
+                        </div>
+                        <div className="messageSender__option">
+                            <InsertEmotionIcon style={{ color: "orange" }} />
+                            <h3>Rating</h3>
+                        </div>
             </div>
         </div>
     }
@@ -112,11 +96,11 @@ const Create = (props) => {
     return (
         <React.Fragment>           
             
-                {createForm}              
+                {commentForm}              
            
             
         </React.Fragment>
     )
 }
 
-export default Create;
+export default CommentBox;

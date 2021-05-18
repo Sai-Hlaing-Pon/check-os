@@ -17,10 +17,14 @@
     
 }
 .post__topInfo {
-    margin-left: 10px;
+    margin-left: 30px;
 }
-.post__topInfo > h3 {
-    font-size: medium;
+.post__topInfo > h2 {
+    font-size: 30px;
+    margin-right: 10px;
+}
+.post__topInfo > title {
+    font-size: 30px;
     margin-right: 10px;
 }
 
@@ -41,12 +45,12 @@
     background-color: rgb(7, 6, 3);
     color: white;
     width: 150px;
-    height: 30px;
-    text-align: center;
-    align-content: center;
+    height: 30px;   
     margin-left: 400px;
     border-radius: 25px;
     margin-top: -50px;
+    padding-bottom: 10px;
+    text-align: center;
 }
 .badge1 {
     background-color: rgb(230, 230, 230);

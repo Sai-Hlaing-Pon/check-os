@@ -1,6 +1,6 @@
 import React from 'react';
 import "../Sidebar/Sidebar.css";
-
+import SidebarRow from "../Sidebar/elements/SidebarRow";
 import CompareIcon from '@material-ui/icons/Compare';
 import StorefrontIcon from  "@material-ui/icons/Storefront";
 import PeopleIcon from  "@material-ui/icons/People";
@@ -12,13 +12,13 @@ function Sidebar() {
   
 
     return (
-        <div className="sidebar">            
-           
-    
-            <p>hi</p>         
-            <br />
-                     
-           
+        <div className="sidebar">         
+                        
+           <SidebarRow Icon={PeopleIcon} title="Home" />                               
+            <SidebarRow Icon={StorefrontIcon} title="Home Decoration"/>
+            <SidebarRow Icon={CompareIcon} title="Clothing"/>
+            <SidebarRow Icon={StarsIcon} title="Top Ranking"/>
+            <SidebarRow Icon={WarningIcon} title="Issues"/>
         </div>
     )
 }

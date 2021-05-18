@@ -64,12 +64,15 @@ class Firebase {
         const storageChild = storageRef.child(post.cover.name);
         const postCover = await storageChild.put(post.cover);
         const downloadURL = await storageChild.getDownloadURL();
+
         //const fileRef = await postCover.ref.location.path;
 
         let newPost = {
             title: post.title,
             content: post.content,
             cover: downloadURL,
+            category: post.category,
+          
             //fileref: fileRef,
         };
 
@@ -95,6 +98,8 @@ class Firebase {
                 title: postData.title,
                 content: postData.content,
                 cover: downloadURL,
+                category: postData.category,
+           
                 //fileref: fileRef,
             };
             return await firebase.firestore().collection("posts").doc(postId).set(updatePost, { merge: true });

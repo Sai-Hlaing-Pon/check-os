@@ -47,15 +47,12 @@ const Header = (props) => {
             </div>
 
             <div className="header_middle">
-                 <div className="header__input">
-                 <SearchIcon />
-                    <input placeholder="Search your shop" type="text" />
-                </div>
+               
             </div>
 
             <div className="header__right">
                 <div className="header__info">
-                <Link  to="/create" style={{ textDecoration: 'none', color: 'red', marginRight: '70px'}}>New post</Link>
+                <Link  to="/create" style={{ textDecoration: 'none', color: 'blue', marginRight: '70px'}}>Create review shop</Link>
                 {buttons}
                 </div>
             </div>
